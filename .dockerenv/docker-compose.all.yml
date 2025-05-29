@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Eureka Server
+  eureka-server:
+    image: openzipkin/zipkin:2.23
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_APPLICATION_NAME=eureka-server
+      - SPRING_CLOUD_CONFIG_ENABLED=false
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=false
+      - EUREKA_CLIENT_FETCH_REGISTRY=false
+      - EUREKA_SERVER_ENABLE_SELF_PRESERVATION=false
+      - EUREKA_SERVER_RESPONSE_CACHE_UPDATE_INTERVAL_MS=1000
+    networks:
+      - spring-cloud-network
+
+  # MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - /workspaces/data/mysql:/var/lib/mysql
+    networks:
+      - spring-cloud-network
+
+  # Redis
+  redis:
+    image: redis:6.2
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /workspaces/data/redis:/data
+    networks:
+      - spring-cloud-network
+
+networks:
+  spring-cloud-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
