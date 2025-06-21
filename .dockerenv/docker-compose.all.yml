@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   # Eureka Server
   eureka-server:
-    image: openzipkin/zipkin:2.23
+    image: springcloud/eureka:latest
     container_name: eureka-server
     ports:
       - "8761:8761"

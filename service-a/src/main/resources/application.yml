@@ -12,3 +12,7 @@ management:
       exposure:
         include: '*'  # 生产环境建议按需配置，如 'health,metrics'
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
