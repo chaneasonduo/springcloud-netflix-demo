@@ -1,0 +1,14 @@
+server:
+  port: 10000
+
+spring:
+  application:
+    name: service-a
+
+# application.yml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 生产环境建议按需配置，如 'health,metrics'
+
