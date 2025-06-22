@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'service-a-app'
+    static_configs:
+      - targets: ['service-a:10000']
