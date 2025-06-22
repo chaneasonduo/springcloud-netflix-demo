@@ -10,7 +10,17 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'  # 生产环境建议按需配置，如 'health,metrics'
+        include: health,info,prometheus,metrics
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    enable:
+      all: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 
 eureka:
   client:
